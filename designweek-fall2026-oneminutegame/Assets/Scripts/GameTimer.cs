@@ -26,6 +26,6 @@ public class GameTimer : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(gameTime / 60); // Calculate minutes
         int seconds = Mathf.FloorToInt(gameTime % 60); // Calculate seconds
-        timeRemaining.text = "Time Remaining: " + string.Format("{0:0}:{1:00}", minutes, seconds); // Update time remaining
+        timeRemaining.text = string.Format("{0:0}:{1:00}", minutes, seconds); // Update time remaining
     }
 }
