@@ -14,7 +14,6 @@ public class BombTimer : MonoBehaviour
         if (bombTime <= 0)
         {
             bombTime = 0; // Ensure bomb time doesn't go below zero
-            Debug.Log("Bomb exploded!"); // Log bomb explosion message
         }
         else
         {
