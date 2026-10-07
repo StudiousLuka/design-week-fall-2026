@@ -1,12 +1,8 @@
-using TMPro;
 using UnityEngine;
+using TMPro;
 
-public class GameManager : MonoBehaviour
+public class BombTimer : MonoBehaviour
 {
-    public float gameTime = 60f; // Total game time in seconds
-
-    public TMP_Text timeRemaining; // Reference to the TextMeshPro text component to display time remaining
-
     public float bombTime = 5f; // Total bomb time in seconds
 
     public TMP_Text bombTimeText; // Reference to the TextMeshPro text component to display bomb time
@@ -15,44 +11,31 @@ public class GameManager : MonoBehaviour
 
     public GameObject bomb; // Reference to the Bomb GameObject
 
+    public GameTimer gameTime; // Reference to the GameTimer script
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         safeZone = false;
+        gameTime = FindAnyObjectByType<GameTimer>(); // Get the GameTimer component from the scene
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameTime -= Time.deltaTime; // Decrease game time by the time elapsed since the last frame
-        if (gameTime <= 0)
-        {
-            gameTime = 0; // Ensure game time doesn't go below zero
-            Debug.Log("Game Over!"); // Log game over message
-        }
-        else
-        {
-            UpdateTimer(); // Update the timer display
-        }
-
         bombTime -= Time.deltaTime; // Decrease bomb time by the time elapsed since the last frame
         if (bombTime <= 0)
         {
             bombTime = 0; // Ensure bomb time doesn't go below zero
             CheckSafeZone(); // Call the method to check if the bomb is in a safe zone
-            Destroy(bomb.gameObject); // Destroy the bomb GameObject
+            Destroy(bomb); // Destroy the bomb GameObject
         }
         else
         {
             UpdateBombTimer(); // Update the bomb timer display
         }
     }
-    void UpdateTimer()
-    {
-        int minutes = Mathf.FloorToInt(gameTime / 60); // Calculate minutes
-        int seconds = Mathf.FloorToInt(gameTime % 60); // Calculate seconds
-        timeRemaining.text = "Time Remaining: " + string.Format("{0:0}:{1:00}", minutes, seconds); // Update time remaining
-    }
+
     void UpdateBombTimer()
     {
         int seconds = Mathf.FloorToInt(bombTime); // Calculate seconds
@@ -68,7 +51,7 @@ public class GameManager : MonoBehaviour
         else
         {
             safeZone = false; // Bomb is not in a safe zone
-            gameTime -= 1; // Decrease game time by 10 seconds as a penalty for the bomb exploding
+            gameTime.gameTime -= 1f; // Decrease game time by 10 seconds if bomb is not in a safe zone
             Debug.Log("Bomb is not in a safe zone! Bomb has exploded!"); // Log message indicating bomb is not in a safe zone
         }
     }
