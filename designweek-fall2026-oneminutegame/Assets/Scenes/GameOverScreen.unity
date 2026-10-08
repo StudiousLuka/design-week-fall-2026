@@ -1222,6 +1222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45277802ed026c2418edb5455b8efb2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackToTitle
+  delay: 1
 --- !u!1 &2083807390
 GameObject:
   m_ObjectHideFlags: 0
