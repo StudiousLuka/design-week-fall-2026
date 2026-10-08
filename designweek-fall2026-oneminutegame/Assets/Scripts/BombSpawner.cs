@@ -11,7 +11,7 @@ public class BombSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spawnInterval = Random.Range(1, 2); // Set a random spawn interval between 1 and 2 seconds
+        spawnInterval = Random.Range(0.25f, 0.5f); // Set a random spawn interval between 0.25 and 0.5 seconds
         SpawnBomb(); // Call the method to spawn the bomb at the start of the game
     }
     void SpawnBomb()
@@ -21,6 +21,6 @@ public class BombSpawner : MonoBehaviour
         Instantiate(bombPrefab, spawnPoint.position, spawnPoint.rotation); // Instantiate the bomb at the selected spawn point
 
         Invoke("SpawnBomb", spawnInterval); // Schedule the next bomb spawn after the specified interval
-        spawnInterval = Random.Range(1, 2); // Set a new random spawn interval for the next bomb
+        spawnInterval = Random.Range(0.25f, 0.5f); // Set a new random spawn interval for the next bomb
     }
 }
