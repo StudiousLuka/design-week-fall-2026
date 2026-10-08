@@ -29,6 +29,7 @@ public class BombTimer : MonoBehaviour
             bombTime = 0; // Ensure bomb time doesn't go below zero
             CheckSafeZone(); // Call the method to check if the bomb is in a safe zone
             Destroy(bomb); // Destroy the bomb GameObject
+
         }
         else
         {
