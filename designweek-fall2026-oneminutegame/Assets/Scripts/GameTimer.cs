@@ -15,7 +15,9 @@ public class GameTimer : MonoBehaviour
         if (gameTime <= 0)
         {
             gameTime = 0; // Ensure game time doesn't go below zero
-            Debug.Log("Game Over!"); // Log game over message
+
+            // Load the next scene when the timer reaches zero
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {

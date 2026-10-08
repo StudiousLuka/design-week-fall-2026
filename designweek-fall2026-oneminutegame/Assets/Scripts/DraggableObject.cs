@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class DraggableObject : MonoBehaviour
 {
-    public static int score = 0;
     [SerializeField] private GameObject bomb;
+
+    public Scorekeeper scorePoints; // Reference to the Scorekeeper script to update score
 
     private void OnMouseDrag()
     {
@@ -17,11 +18,8 @@ public class DraggableObject : MonoBehaviour
     {
         if (collision.CompareTag("BombGarbage"))
         {
-            score++;
-            Debug.Log("hit detect");
+            Scorekeeper.score += 1; // Increase score by 1 when the bomb is dragged into the garbage can
             Destroy(bomb);
-            Debug.Log("Score: " + score);
         }
     }
-
 }
