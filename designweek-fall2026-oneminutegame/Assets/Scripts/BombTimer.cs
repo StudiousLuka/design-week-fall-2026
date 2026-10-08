@@ -11,22 +11,17 @@ public class BombTimer : MonoBehaviour
 
     public GameObject bomb; // Reference to the Bomb GameObject
 
+    public GameObject explosionSprite; // Reference to the explosion sprite GameObject
+
     public GameTimer gameTime; // Reference to the GameTimer script
 
-    [SerializeField] private AudioSource bombExplosion;
-
-    [SerializeField] private SpriteRenderer bombSprite;
-
-    [SerializeField] private Canvas bombTimer;
+    public AudioClip bombExplosion; // Reference to the AudioClip for bomb explosion sound
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         safeZone = false;
         gameTime = FindAnyObjectByType<GameTimer>(); // Get the GameTimer component from the scene
-        bombExplosion = GetComponent<AudioSource>(); // Get the AudioSource component attached to the bomb
-        bombSprite = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component attached to the bomb
-        bombTimer = GetComponentInChildren<Canvas>(); // Get the Canvas component attached to the bomb
     }
 
     // Update is called once per frame
@@ -38,7 +33,8 @@ public class BombTimer : MonoBehaviour
             bombTime = 0; // Ensure bomb time doesn't go below zero
             CheckSafeZone(); // Call the method to check if the bomb is in a safe zone
 
-
+            AudioSource.PlayClipAtPoint(bombExplosion, bomb.transform.position, 2.0f); // Play the bomb explosion sound at the bomb's position)
+            Instantiate(explosionSprite, bomb.transform.position, Quaternion.identity); // Instantiate the explosion sprite at the bomb's position)
             Destroy(bomb); // Destroy the bomb GameObject
 
         }
@@ -63,12 +59,6 @@ public class BombTimer : MonoBehaviour
         {
             safeZone = false; // Bomb is not in a safe zone
             gameTime.gameTime -= 1f; // Decrease game time by 10 seconds if bomb is not in a safe zone
-
-
-            bombSprite.enabled = false;
-            bombTimer.enabled = false;
-
-            bombExplosion.Play();
         }
     }
 }

@@ -8,17 +8,7 @@ public class DraggableObject : MonoBehaviour
 
     public Scorekeeper scorePoints; // Reference to the Scorekeeper script to update score
 
-    [SerializeField] private AudioSource baDing;
-
-    [SerializeField] private SpriteRenderer bombSprite;
-
-    [SerializeField] private Canvas bombTimer;
-    
-    void Start()
-    {
-        baDing = GetComponent<AudioSource>();
-        bombTimer = GetComponentInChildren<Canvas>();
-    }
+    public AudioClip bombSecured; // Reference to the AudioClip for bomb secured sound
 
     private void OnMouseDrag()
     {
@@ -34,12 +24,8 @@ public class DraggableObject : MonoBehaviour
         {
             Scorekeeper.score += 1; // Increase score by 1 when the bomb is dragged into the garbage can
 
-            bombSprite.enabled = false; 
-            bombTimer.enabled = false;
-
-            baDing.Play(); // Play sound
-
-            Destroy(bomb, baDing.clip.length);
+            AudioSource.PlayClipAtPoint(bombSecured, bomb.transform.position, 1.0f); // Play the bomb secured sound at the bomb's position)
+            Destroy(bomb);
             
         }
     }
