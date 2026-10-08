@@ -1,10 +1,24 @@
+using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class DraggableObject : MonoBehaviour
 {
     [SerializeField] private GameObject bomb;
 
     public Scorekeeper scorePoints; // Reference to the Scorekeeper script to update score
+
+    [SerializeField] private AudioSource baDing;
+
+    [SerializeField] private SpriteRenderer bombSprite;
+
+    [SerializeField] private Canvas bombTimer;
+    
+    void Start()
+    {
+        baDing = GetComponent<AudioSource>();
+        bombTimer = GetComponentInChildren<Canvas>();
+    }
 
     private void OnMouseDrag()
     {
@@ -19,7 +33,15 @@ public class DraggableObject : MonoBehaviour
         if (collision.CompareTag("BombGarbage"))
         {
             Scorekeeper.score += 1; // Increase score by 1 when the bomb is dragged into the garbage can
-            Destroy(bomb);
+
+            bombSprite.enabled = false; 
+            bombTimer.enabled = false;
+
+            baDing.Play(); // Play sound
+
+            Destroy(bomb, baDing.clip.length);
+            
         }
     }
+
 }
