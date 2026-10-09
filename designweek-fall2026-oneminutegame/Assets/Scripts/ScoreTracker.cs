@@ -15,6 +15,6 @@ public class ScoreTracker : MonoBehaviour
 
     void ShowScore()
     {
-        scoreDisplay.text = "Score: " + Scorekeeper.score; // Update score display with the current score from Scorekeeper
+        scoreDisplay.text = "Current Score: " + Scorekeeper.score; // Update score display with the current score from Scorekeeper
     }
 }
