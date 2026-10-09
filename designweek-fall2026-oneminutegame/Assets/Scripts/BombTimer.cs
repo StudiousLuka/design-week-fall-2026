@@ -47,7 +47,14 @@ public class BombTimer : MonoBehaviour
     void UpdateBombTimer()
     {
         int seconds = Mathf.FloorToInt(bombTime); // Calculate seconds
-        bombTimeText.text = "" + seconds; // Update bomb time display
+
+        // If bombTimeText is not null then update the bomb time display
+        // This fixes the warning spam
+        if (bombTimeText != null)
+        {
+            bombTimeText.text = "" + seconds; // Update bomb time display
+        }
+   
     }
     void CheckSafeZone()
     {

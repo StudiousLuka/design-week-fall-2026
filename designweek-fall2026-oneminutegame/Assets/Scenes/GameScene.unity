@@ -1034,6 +1034,7 @@ MonoBehaviour:
   - {fileID: 869081604}
   - {fileID: 1161558212}
   spawnInterval: 0
+  spawnCheckRadius: 0.1
 --- !u!1 &675135052
 GameObject:
   m_ObjectHideFlags: 0
