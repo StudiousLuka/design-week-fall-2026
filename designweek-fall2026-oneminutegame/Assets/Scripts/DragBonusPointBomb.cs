@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class DraggableObject : MonoBehaviour
+public class DragBonusPointBomb : MonoBehaviour
 {
     [SerializeField] private GameObject bomb;
 
@@ -22,12 +22,11 @@ public class DraggableObject : MonoBehaviour
     {
         if (collision.CompareTag("BombGarbage"))
         {
-            Scorekeeper.score += 1; // Increase score by 1 when the bomb is dragged into the garbage can
+            Scorekeeper.score += 2; // Increase score by 2 when the bomb is dragged into the garbage can
 
             AudioSource.PlayClipAtPoint(bombSecured, bomb.transform.position, 1.0f); // Play the bomb secured sound at the bomb's position)
             Destroy(bomb);
             
         }
     }
-
 }

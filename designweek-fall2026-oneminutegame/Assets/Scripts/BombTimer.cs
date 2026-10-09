@@ -65,7 +65,7 @@ public class BombTimer : MonoBehaviour
         else
         {
             safeZone = false; // Bomb is not in a safe zone
-            gameTime.gameTime -= 1f; // Decrease game time by 10 seconds if bomb is not in a safe zone
+            gameTime.gameTime -= 1f; // Decrease game time by 1 second if bomb is not in a safe zone
         }
     }
 }
