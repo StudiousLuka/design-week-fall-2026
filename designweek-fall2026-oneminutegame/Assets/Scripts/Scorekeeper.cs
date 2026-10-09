@@ -4,7 +4,9 @@ using Unity.VisualScripting;
 
 public class Scorekeeper : MonoBehaviour
 {
-    public static int score;
+    public static int score; // Variable to store the current score
+    
+    public static int highScore; // Variable to store the high score
 
     public TMP_Text scoreKeeper; // Reference to the TextMeshPro text component to display score
 
@@ -16,6 +18,11 @@ public class Scorekeeper : MonoBehaviour
     void Update()
     {
         UpdateScore(); // Update the score display
+
+        if (score > highScore)
+        {
+            highScore = score; // Update high score if current score exceeds it
+        }
     }
     void UpdateScore()
     { 
